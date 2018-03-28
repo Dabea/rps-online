@@ -1,3 +1,36 @@
-body{
+.player1 {
+    width:20%;
+    height: 250px;
+    float: left;
+    background: blue;
+
+}
+
+.player2 {
+    width:20%;
+    height: 250px;
+    float: left;
     background: blueviolet;
+}
+
+.chat {
+    clear: both;
+    margin: 0 auto;
+    width: 40%;
+    background: rgb(73, 161, 73);
+    padding: 25px;
+}
+
+.chat-area {
+    width: 90%;
+    height: 400px;
+    margin: 0 auto;
+    background: lightcyan;
+   
+    
+}
+
+.chat-input {
+    width:90%;
+    margin: 0 auto;
 }

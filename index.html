@@ -4,10 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="./assets/css/style.css"> 
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
     <title>Document</title>
 </head>
 <body>
-    
+       
+       
+    <div class="masthead"><span class="player-name">Name</span></div>  
+    <div class="player1">
+        <span class="player-name" >Player 1</span>
+        <ul class="choice-list">
+            <li class="choices"></li>
+            <li class="choices"></li>
+            <li class="choices"></li>
+        </ul>
+    </div>
+    <div class="battleground">
+
+    </div>
+    <div class="player2">
+        <span class="player-name" >Player 2</span>
+        <ul class="choice-list">
+            <li class="choices"></li>
+            <li class="choices"></li>
+            <li class="choices"></li>
+        </ul>
+    </div>
+    <div class="chat">
+        <div class="chat-area" name="chat-area" id="" cols="30" rows="10"></div>
+        <input class="chat-input" type="text" placeholder="Your Message">
+        <button class="chat-submit" >Send</button>
+    </div>
+    <script src="./assets/javascript/app.js" ></script>
 </body>
 </html>
