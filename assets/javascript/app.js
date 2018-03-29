@@ -8,28 +8,40 @@ var config = {
   messagingSenderId: "738473785317"
 };
 
+const name = prompt('What is your name?');
 
 firebase.initializeApp(config);
 
-const database = firebase.database().ref();
+const database = firebase.database().ref().child('messages');
 
-database.set({
-    "messages": {
-        "1": {
-                "name": "eclarke",
-                "message": "The relay seems to be malfunctioning.",
-                "timestamp": 1459361875337
-            },
-        "2": {
-            "name": "Susy",
-            "message": "Looks good to me.",
-            "timestamp": 1459361877337
-        },    
-    }        
-});
 
-database.orderByValue().on("value", function(data) {
-    console.log(data.val().messages[1].message);
-   const messageList = data.val().messages;
-   messageList.forEach(message => $('.chat-area').append(`<div>${message.name} :  ${message.message}</div`) )
+// database.set({
+//     "messages": {
+//         "1": {
+//                 "name": "eclarke",
+//                 "message": "The relay seems to be malfunctioning.",
+//                 "timestamp": 1459361875337
+//             },
+//         "2": {
+//             "name": "Susy",
+//             "message": "Looks good to me.",
+//             "timestamp": 1459361877337
+//         },    
+//     }        
+// });
+
+database.on("value", function(data) {
+    console.log(data.val());
+   data.map(message => $('.chat-area').text(`<div>test fdaslfdajkl</div`) )
+  
  });
+
+
+ $('.chat-submit').on('click', function(){
+     alert('message');
+     database.push().set({
+        "name": name,
+        "message": "test Message ",
+        "timestamp": 1459361875337
+     })
+ })
