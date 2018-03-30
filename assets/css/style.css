@@ -26,6 +26,7 @@
     height: 400px;
     margin: 0 auto;
     background: lightcyan;
+    overflow: scroll;
    
     
 }

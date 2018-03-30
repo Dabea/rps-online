@@ -30,18 +30,36 @@ const database = firebase.database().ref().child('messages');
 //     }        
 // });
 
-database.on("value", function(data) {
-    console.log(data.val());
-   data.map(message => $('.chat-area').text(`<div>test fdaslfdajkl</div`) )
-  
- });
+// database.on("value", function(data) {
+    
+   
+//   data.forEach(function(childSnapshot) {
+//     console.log(childSnapshot)
+//     var messageData = childSnapshot.val();
+//     console.log(messageData);
+//     $('.chat-area').append(`<div>${messageData.name}:  ${messageData.message}</div`);
+    
+// });
+// });
 
 
  $('.chat-submit').on('click', function(){
-     alert('message');
+    const message = $('.chat-input').val();
+    $('.chat-input').val('');
      database.push().set({
         "name": name,
-        "message": "test Message ",
+        "message": message,
         "timestamp": 1459361875337
      })
  })
+
+
+ database.on('child_added', function(message) {
+  var message = message.val();
+  $('.chat-area').append(`<div>${message.name}:  ${message.message}</div`);
+});
+
+
+$('.join').on('click', function(){
+  
+})
