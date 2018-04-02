@@ -61,5 +61,22 @@ const database = firebase.database().ref().child('messages');
 
 
 $('.join').on('click', function(){
-  
+
+  database.set({
+    "player1":{
+      "active": name,
+      "choice": null,
+      "wins": 0,
+    }
+  })
+  $('.player1').addClass('active')
 })
+
+database.orderByChild('name').equalTo('abraham').on("value", function(snapshot) {
+  console.log(snapshot.val());
+  snapshot.forEach(function(data) {
+console.log(data.val().remove());
+  });
+});
+
+

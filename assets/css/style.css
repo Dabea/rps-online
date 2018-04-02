@@ -6,6 +6,10 @@
 
 }
 
+.active {
+    border: 3px solid yellow;
+}
+
 .player2 {
     width:20%;
     height: 250px;
