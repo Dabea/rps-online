@@ -58,11 +58,8 @@ db.ref('messages').once('value').then(function(data) {
 
 
 $('.join').on('click', function(){
-
-  console.log('fire')
   playerDb.ref('player').once('value', function(snapshot){
-    console.log(!snapshot.exists())
-    if(!snapshot.exists()) {
+    if(!snapshot.exists() || !snapshot.val().player1 ) {
       playerDb.ref('player/player1').onDisconnect().remove()
       playerDb.ref("player").update({
         "player1":{
@@ -146,15 +143,36 @@ playerDb.ref('player').on('value', function(snapshot){
       }
 
       if(snapshot.val().player1 && snapshot.val().player2){
-        
           $('.choice-list').empty();
           $('.choice-list').append('<li data-choice="rock" class="choices">rock</li> <li data-choice="papper" class="choices">papper</li><li data-choice="Sisciors" class="choices">Sisciors</li>');
           enableRPSChoice();
-    
+      }
 
-    
+      if((snapshot.val().player1.choice != null) && (snapshot.val().player2.choice != null) ){
+
+        if(snapshot.val().player1.choice === snapshot.val().player2.choice){
+          alert('TIE');
+          return;
+        }
+        
+        if(snapshot.val().player1.choice === "rock"){
+          if(snapshot.val().player2.choice == "Sisciors"){ alert(`player ${snapshot.val().player1.name} wins`)}
+          if(snapshot.val().player2.choice == "papper"){ alert(`player ${snapshot.val().player2.name} wins`)}
+        }
+      
+        if(snapshot.val().player1.choice === "papper"){
+          if(snapshot.val().player2.choice == "rock"){ alert(`player ${snapshot.val().player1.name} wins`)}
+          if(snapshot.val().player2.choice == "Sisciors"){ alert(`player ${snapshot.val().player2.name} wins`)}
+        }
+      
+        if(snapshot.val().player1.choice === "Sisciors"){
+          if(snapshot.val().player2.choice == "papper"){ alert(`player ${snapshot.val().player1.name} wins`)}
+          if(snapshot.val().player2.choice == "rock"){ alert(`player ${snapshot.val().player2.name} wins`)}
+        }
+      
       
       }
+      console.log('fire');
 })
 
 
@@ -162,10 +180,24 @@ playerDb.ref('player').on('value', function(snapshot){
 function enableRPSChoice(){
   $('.choices').on("click", function(event){
     const choice = $(event.target).data('choice')
-    console.log(choice);
     $('.choices').off()
+    playerDb.ref('player').once('value', function(snapshot){
+        if(snapshot.val().player1.name === name){
+          $('.player1-choice').text(choice)
+          playerDb.ref('player/player1').update({'choice':choice})
+          
+        }
+        if(snapshot.val().player2.name === name){
+          $('.player2-choice').text(choice)
+          playerDb.ref('player/player2').update({'choice':choice})
+        }
+    });
     
 })
 }
 
 
+function chooseWinner(player1, player2){
+ 
+ 
+}
