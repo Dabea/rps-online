@@ -6,6 +6,13 @@
 
 }
 
+.battleground{
+    width:20%;
+    height: 250px;
+    float: left;
+    background: tomato;
+}
+
 .active {
     border: 3px solid yellow;
 }
